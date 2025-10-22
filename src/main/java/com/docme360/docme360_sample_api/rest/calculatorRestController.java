@@ -25,4 +25,12 @@ public class calculatorRestController {
         jsonObject.put("output", a - b);
         return jsonObject;
     }
+
+    @GetMapping("/multiply")
+    public JSONObject multiply(@RequestParam Double a, @RequestParam Double b) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("input", String.format("%d * %d",a,b));
+        jsonObject.put("output", a * b);
+        return jsonObject;
+    }
 }
