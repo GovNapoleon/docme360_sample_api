@@ -6,10 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/v0")
 public class hackathonRestController {
-    @GetMapping("/hello")
-    public JSONObject hello(){
+    @GetMapping("/")
+    public JSONObject home(){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("message", "hello DOCME360 hackathon");
         return jsonObject;
