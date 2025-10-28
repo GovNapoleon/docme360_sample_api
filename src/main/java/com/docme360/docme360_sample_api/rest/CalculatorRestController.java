@@ -2,10 +2,7 @@ package com.docme360.docme360_sample_api.rest;
 
 
 import org.json.simple.JSONObject;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/calculator")
@@ -18,8 +15,10 @@ public class CalculatorRestController {
         return jsonObject;
     }
 
-    @GetMapping("/subtract")
-    public JSONObject subtract(@RequestParam Double a, @RequestParam Double b) {
+    @PostMapping("/subtract")
+    public JSONObject subtract(@RequestBody CalculatorInput calculator) {
+        Double a  = calculator.getA();
+        Double b = calculator.getB();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("input", String.format("%d - %d",a,b));
         jsonObject.put("output", a - b);
