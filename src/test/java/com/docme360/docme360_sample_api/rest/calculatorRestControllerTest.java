@@ -23,14 +23,26 @@ class calculatorRestControllerTest {
     }
 
     @Test
-    void subtract() {
+    void subtract() throws Exception  {
+        mockMvc.perform(get("/calculator/subtract")
+                        .param("a", "3")
+                        .param("b", "2"))
+                .andExpect(status().isOk());
     }
 
     @Test
-    void multiply() {
+    void multiply() throws Exception  {
+        mockMvc.perform(get("/calculator/multiply")
+                        .param("a", "3")
+                        .param("b", "2"))
+                .andExpect(status().isOk());
     }
 
     @Test
-    void divide() {
+    void divide() throws Exception  {
+        mockMvc.perform(get("/calculator/divide")
+                        .param("numerator", "3")
+                        .param("denominator", "0"))
+                .andExpect(status().isOk());
     }
 }
