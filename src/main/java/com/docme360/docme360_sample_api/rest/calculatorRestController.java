@@ -33,4 +33,16 @@ public class calculatorRestController {
         jsonObject.put("output", a * b);
         return jsonObject;
     }
+
+    @GetMapping("/divide")
+    public JSONObject divide(@RequestParam Double numerator, @RequestParam Double denominator) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("input", String.format("%d / %d",numerator,denominator));
+        if ( denominator == 0 ) {
+            jsonObject.put("output", "Undefined");
+        } else {
+            jsonObject.put("output", numerator * denominator);
+        }
+        return jsonObject;
+    }
 }
