@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/calculator")
-public class calculatorRestController {
+public class CalculatorRestController {
     @GetMapping("/add")
     public JSONObject add(@RequestParam Integer a, @RequestParam Integer b) {
         JSONObject jsonObject = new JSONObject();
