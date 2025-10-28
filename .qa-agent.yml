@@ -1,0 +1,13 @@
+# === Test Environment ===
+test_environment:
+  # Deployed API Gateway URL
+  base_url: "https://docme360-sample-api-de03f14bd929.herokuapp.com/"
+
+  # Request timeouts
+  timeout: 30
+  max_retries: 2
+
+  # Headers to include in all requests
+  headers:
+    User-Agent: "AI-QA-Agent/1.0"
+    Content-Type: "application/json"
