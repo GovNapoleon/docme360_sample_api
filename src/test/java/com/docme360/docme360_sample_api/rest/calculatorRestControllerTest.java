@@ -11,15 +11,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.springframework.http.MediaType;
 
-//import com.fasterxml.jackson.databind.ObjectMapper;
-
 @WebMvcTest(CalculatorRestController.class)
 class calculatorRestControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-//    @Autowired
-//    private ObjectMapper objectMapper;
 
     @Test
     void add() throws Exception  {
@@ -41,6 +37,19 @@ class calculatorRestControllerTest {
                 .content(jsonPayload))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.output").value(7.0));
+
+    }
+
+    @Test
+    void multiply() throws Exception  {
+        CalculatorInput calculatorInput = new CalculatorInput(10.0,3.0);
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonPayload = mapper.writeValueAsString(calculatorInput);
+        mockMvc.perform(post("/calculator/multiply")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonPayload))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.output").value(30.0));
 
     }
 
