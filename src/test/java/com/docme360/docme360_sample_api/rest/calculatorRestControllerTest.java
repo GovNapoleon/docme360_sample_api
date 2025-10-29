@@ -1,15 +1,16 @@
 package com.docme360.docme360_sample_api.rest;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-//import org.springframework.http.MediaType;
-//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import org.springframework.http.MediaType;
+
 //import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(CalculatorRestController.class)
@@ -28,6 +29,19 @@ class calculatorRestControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.output").value("5"));
+    }
+
+    @Test
+    void subtract() throws Exception  {
+        CalculatorInput calculatorInput = new CalculatorInput(10.0,3.0);
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonPayload = mapper.writeValueAsString(calculatorInput);
+        mockMvc.perform(post("/calculator/subtract")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonPayload))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.output").value(7.0));
+
     }
 
 }
