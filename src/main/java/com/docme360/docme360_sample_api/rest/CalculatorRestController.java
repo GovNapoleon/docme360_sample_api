@@ -1,7 +1,10 @@
 package com.docme360.docme360_sample_api.rest;
 
 import com.docme360.docme360_sample_api.entity.CalculatorInput;
+import com.docme360.docme360_sample_api.entity.CalculatorResponse;
 import org.json.simple.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -36,14 +39,22 @@ public class CalculatorRestController {
     }
 
     @GetMapping("/divide")
-    public JSONObject divide(@RequestParam Double numerator, @RequestParam Double denominator) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("input", String.format("%d / %d",numerator,denominator));
-        if ( denominator == 0 ) {
-            jsonObject.put("output", "Undefined");
-        } else {
-            jsonObject.put("output", numerator * denominator);
+    public ResponseEntity<CalculatorResponse> divide(@RequestParam Double numerator, @RequestParam Double denominator) {
+        String input = String.format("%.2f / %.2f", numerator, denominator);
+        String errorMessage = "Cannot divide by zero.";
+        try {
+            CalculatorResponse calculatorResponse = new CalculatorResponse();
+            calculatorResponse.setInput(input);
+            if (denominator == 0) {
+                throw new IllegalArgumentException(errorMessage);
+            }
+            calculatorResponse.setOutput(numerator / denominator);
+            return new ResponseEntity<>(calculatorResponse, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            CalculatorResponse calculatorResponse = new CalculatorResponse();
+            calculatorResponse.setInput(input);
+            calculatorResponse.setErrorMessage(e.getMessage());
+            return new ResponseEntity<>(calculatorResponse, HttpStatus.BAD_REQUEST);
         }
-        return jsonObject;
     }
 }
