@@ -1,7 +1,7 @@
 package com.docme360.docme360_sample_api.rest;
 
 
-class CalculatorInput {
+public class CalculatorInput {
     private Double a;
     private Double b;
 
