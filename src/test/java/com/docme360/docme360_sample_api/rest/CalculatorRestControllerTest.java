@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.springframework.http.MediaType;
 
 @WebMvcTest(CalculatorRestController.class)
-class calculatorRestControllerTest {
+class CalculatorRestControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
