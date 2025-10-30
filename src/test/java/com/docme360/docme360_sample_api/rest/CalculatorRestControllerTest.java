@@ -54,4 +54,17 @@ class CalculatorRestControllerTest {
 
     }
 
+    @Test
+    void divide() throws Exception  {
+        CalculatorInput calculatorInput = new CalculatorInput(10.0,2.0);
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonPayload = mapper.writeValueAsString(calculatorInput);
+        mockMvc.perform(post("/calculator/divide")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonPayload))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.output").value(5.0));
+
+    }
+
 }
