@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/calculator")
+@RequestMapping("/api/calculator")
 public class CalculatorRestController {
     @GetMapping("/add")
     public JSONObject add(@RequestParam Integer a, @RequestParam Integer b) {

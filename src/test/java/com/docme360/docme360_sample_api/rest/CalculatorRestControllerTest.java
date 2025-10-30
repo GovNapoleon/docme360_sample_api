@@ -22,7 +22,7 @@ class CalculatorRestControllerTest {
     @Test
     @DisplayName("Adding 3 + 2 should be 5")
     void add() throws Exception  {
-        mockMvc.perform(get("/calculator/add")
+        mockMvc.perform(get("/api/calculator/add")
                 .param("a", "3")
                 .param("b", "2"))
                 .andExpect(status().isOk())
@@ -36,7 +36,7 @@ class CalculatorRestControllerTest {
         CalculatorInput calculatorInput = new CalculatorInput(10.0,3.0);
         ObjectMapper mapper = new ObjectMapper();
         String jsonPayload = mapper.writeValueAsString(calculatorInput);
-        mockMvc.perform(post("/calculator/subtract")
+        mockMvc.perform(post("/api/calculator/subtract")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonPayload))
                 .andExpect(status().isOk())
@@ -50,7 +50,7 @@ class CalculatorRestControllerTest {
         CalculatorInput calculatorInput = new CalculatorInput(10.0,3.0);
         ObjectMapper mapper = new ObjectMapper();
         String jsonPayload = mapper.writeValueAsString(calculatorInput);
-        mockMvc.perform(post("/calculator/multiply")
+        mockMvc.perform(post("/api/calculator/multiply")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonPayload))
                 .andExpect(status().isOk())
@@ -64,7 +64,7 @@ class CalculatorRestControllerTest {
         CalculatorInput calculatorInput = new CalculatorInput(10.0,2.0);
         ObjectMapper mapper = new ObjectMapper();
         String jsonPayload = mapper.writeValueAsString(calculatorInput);
-        mockMvc.perform(post("/calculator/divide")
+        mockMvc.perform(post("/api/calculator/divide")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonPayload))
                 .andExpect(status().isOk())
@@ -79,7 +79,7 @@ class CalculatorRestControllerTest {
         String errorMessage = "Cannot divide by zero.";
         ObjectMapper mapper = new ObjectMapper();
         String jsonPayload = mapper.writeValueAsString(calculatorInput);
-        mockMvc.perform(post("/calculator/divide")
+        mockMvc.perform(post("/api/calculator/divide")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonPayload))
                 .andExpect(status().isBadRequest())
