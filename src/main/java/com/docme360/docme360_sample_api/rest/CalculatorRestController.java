@@ -38,11 +38,13 @@ public class CalculatorRestController {
         return jsonObject;
     }
 
-    @GetMapping("/divide")
-    public ResponseEntity<CalculatorResponse> divide(@RequestParam Double numerator, @RequestParam Double denominator) {
+    @PostMapping("/divide")
+    public ResponseEntity<CalculatorResponse> divide(@RequestBody CalculatorInput calculator) {
+        Double numerator  = calculator.getFirstNumber();
+        Double denominator = calculator.getSecondNumber();
         String input = String.format("%.2f / %.2f", numerator, denominator);
-        String errorMessage = "Cannot divide by zero.";
         try {
+            String errorMessage = "Cannot divide by zero.";
             CalculatorResponse calculatorResponse = new CalculatorResponse();
             calculatorResponse.setInput(input);
             if (denominator == 0) {
