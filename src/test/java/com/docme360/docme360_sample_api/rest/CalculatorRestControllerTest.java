@@ -20,7 +20,7 @@ class CalculatorRestControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    @DisplayName("Adding 3 + 2should be 5")
+    @DisplayName("Adding 3 + 2 should be 5")
     void add() throws Exception  {
         mockMvc.perform(get("/calculator/add")
                 .param("a", "3")
