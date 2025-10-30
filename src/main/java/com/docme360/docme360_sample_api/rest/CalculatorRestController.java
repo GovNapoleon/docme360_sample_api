@@ -19,23 +19,23 @@ public class CalculatorRestController {
     }
 
     @PostMapping("/subtract")
-    public JSONObject subtract(@RequestBody CalculatorInput calculator) {
+    public CalculatorResponse subtract(@RequestBody CalculatorInput calculator) {
         Double a  = calculator.getFirstNumber();
         Double b = calculator.getSecondNumber();
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("input", String.format("%.2f - %.2f",a,b));
-        jsonObject.put("output", a - b);
-        return jsonObject;
+        CalculatorResponse calculatorResponse = new CalculatorResponse();
+        calculatorResponse.setInput(String.format("%.2f - %.2f",a,b));
+        calculatorResponse.setOutput(a - b);
+        return calculatorResponse;
     }
 
     @PostMapping("/multiply")
-    public JSONObject multiply(@RequestBody CalculatorInput calculator) {
+    public CalculatorResponse multiply(@RequestBody CalculatorInput calculator) {
         Double a  = calculator.getFirstNumber();
         Double b = calculator.getSecondNumber();
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("input", String.format("%.2f - %.2f",a,b));
-        jsonObject.put("output", a * b);
-        return jsonObject;
+        CalculatorResponse calculatorResponse = new CalculatorResponse();
+        calculatorResponse.setInput(String.format("%.2f * %.2f",a,b));
+        calculatorResponse.setOutput(a * b);
+        return calculatorResponse;
     }
 
     @PostMapping("/divide")
