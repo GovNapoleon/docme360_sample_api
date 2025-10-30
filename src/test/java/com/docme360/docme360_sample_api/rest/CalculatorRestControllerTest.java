@@ -72,4 +72,19 @@ class CalculatorRestControllerTest {
 
     }
 
+    @Test
+    @DisplayName("Divide  10.0 / 0 should be error 'Cannot divide by zero.' ")
+    void divideByZero() throws Exception  {
+        CalculatorInput calculatorInput = new CalculatorInput(10.0, 0.0);
+        String errorMessage = "Cannot divide by zero.";
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonPayload = mapper.writeValueAsString(calculatorInput);
+        mockMvc.perform(post("/calculator/divide")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonPayload))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.errorMessage").value(errorMessage));
+
+    }
+
 }
