@@ -1,13 +1,13 @@
 package com.docme360.docme360_sample_api.rest;
 
 
-public class CalculatorInput {
+public class XCalculatorInput {
     private Double a;
     private Double b;
 
-    public CalculatorInput() {}
+    public XCalculatorInput() {}
 
-    public CalculatorInput(Double a, Double b) {
+    public XCalculatorInput(Double a, Double b) {
         this.a = a;
         this.b = b;
     }

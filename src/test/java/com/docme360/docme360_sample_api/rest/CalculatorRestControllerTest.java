@@ -1,4 +1,5 @@
 package com.docme360.docme360_sample_api.rest;
+import com.docme360.docme360_sample_api.entity.CalculatorInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
