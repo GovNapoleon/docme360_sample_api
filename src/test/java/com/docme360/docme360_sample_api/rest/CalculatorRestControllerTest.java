@@ -1,6 +1,7 @@
 package com.docme360.docme360_sample_api.rest;
 import com.docme360.docme360_sample_api.entity.CalculatorInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -19,6 +20,7 @@ class CalculatorRestControllerTest {
     private MockMvc mockMvc;
 
     @Test
+    @DisplayName("Adding 3 + 2should be 5")
     void add() throws Exception  {
         mockMvc.perform(get("/calculator/add")
                 .param("a", "3")
@@ -29,6 +31,7 @@ class CalculatorRestControllerTest {
     }
 
     @Test
+    @DisplayName("Subtract  10.0 - 3.0 should be 7.0")
     void subtract() throws Exception  {
         CalculatorInput calculatorInput = new CalculatorInput(10.0,3.0);
         ObjectMapper mapper = new ObjectMapper();
@@ -42,6 +45,7 @@ class CalculatorRestControllerTest {
     }
 
     @Test
+    @DisplayName("Multiply  10.0 * 3.0 should be 30.0")
     void multiply() throws Exception  {
         CalculatorInput calculatorInput = new CalculatorInput(10.0,3.0);
         ObjectMapper mapper = new ObjectMapper();
@@ -55,6 +59,7 @@ class CalculatorRestControllerTest {
     }
 
     @Test
+    @DisplayName("Divide  10.0 / 2.0 should be 5.0")
     void divide() throws Exception  {
         CalculatorInput calculatorInput = new CalculatorInput(10.0,2.0);
         ObjectMapper mapper = new ObjectMapper();
