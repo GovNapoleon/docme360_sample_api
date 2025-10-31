@@ -24,7 +24,7 @@ public class CalculatorRestController {
         Double b = calculator.getSecondNumber();
         CalculatorResponse calculatorResponse = new CalculatorResponse();
         calculatorResponse.setInput(String.format("%.2f - %.2f",a,b));
-        calculatorResponse.setOutput(a - b);
+        calculatorResponse.setOutput(calculator.subtract());
         return calculatorResponse;
     }
 
@@ -34,7 +34,7 @@ public class CalculatorRestController {
         Double b = calculator.getSecondNumber();
         CalculatorResponse calculatorResponse = new CalculatorResponse();
         calculatorResponse.setInput(String.format("%.2f * %.2f",a,b));
-        calculatorResponse.setOutput(a * b);
+        calculatorResponse.setOutput(calculator.multiply());
         return calculatorResponse;
     }
 
@@ -50,7 +50,7 @@ public class CalculatorRestController {
             if (denominator == 0) {
                 throw new IllegalArgumentException(errorMessage);
             }
-            calculatorResponse.setOutput(numerator / denominator);
+            calculatorResponse.setOutput(calculator.divide());
             return new ResponseEntity<>(calculatorResponse, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             CalculatorResponse calculatorResponse = new CalculatorResponse();

@@ -24,4 +24,20 @@ public class CalculatorInput {
     public void setSecondNumber(Double secondNumber) {
         this.secondNumber = secondNumber;
     }
+
+    public Double add() {
+        return firstNumber + secondNumber;
+    }
+
+    public Double subtract() {
+        return firstNumber - secondNumber;
+    }
+
+    public Double multiply() {
+        return firstNumber * secondNumber;
+    }
+
+    public Double divide() {
+        return firstNumber / secondNumber;
+    }
 }

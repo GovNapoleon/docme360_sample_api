@@ -2,6 +2,7 @@ package com.docme360.docme360_sample_api.rest;
 import com.docme360.docme360_sample_api.entity.CalculatorInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -20,6 +21,7 @@ class CalculatorRestControllerTest {
     private MockMvc mockMvc;
 
     @Test
+    @Order(0)
     @DisplayName("Adding 3 + 2 should be 5")
     void add() throws Exception  {
         mockMvc.perform(get("/api/calculator/add")
@@ -27,10 +29,11 @@ class CalculatorRestControllerTest {
                 .param("b", "2"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.output").value("5"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.output").value(5));
     }
 
     @Test
+    @Order(1)
     @DisplayName("Subtract  10.0 - 3.0 should be 7.0")
     void subtract() throws Exception  {
         CalculatorInput calculatorInput = new CalculatorInput(10.0,3.0);
@@ -45,6 +48,7 @@ class CalculatorRestControllerTest {
     }
 
     @Test
+    @Order(2)
     @DisplayName("Multiply  10.0 * 3.0 should be 30.0")
     void multiply() throws Exception  {
         CalculatorInput calculatorInput = new CalculatorInput(10.0,3.0);
@@ -59,6 +63,7 @@ class CalculatorRestControllerTest {
     }
 
     @Test
+    @Order(3)
     @DisplayName("Divide  10.0 / 2.0 should be 5.0")
     void divide() throws Exception  {
         CalculatorInput calculatorInput = new CalculatorInput(10.0,2.0);
@@ -73,6 +78,7 @@ class CalculatorRestControllerTest {
     }
 
     @Test
+    @Order(4)
     @DisplayName("Divide  10.0 / 0 should be error 'Cannot divide by zero.' ")
     void divideByZero() throws Exception  {
         CalculatorInput calculatorInput = new CalculatorInput(10.0, 0.0);
@@ -86,5 +92,4 @@ class CalculatorRestControllerTest {
                 .andExpect(jsonPath("$.errorMessage").value(errorMessage));
 
     }
-
 }
